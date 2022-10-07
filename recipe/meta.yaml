@@ -1,0 +1,52 @@
+{% set version = "1.0.1" %}
+{% set build_number = "0" %}
+{% set sha_hash = "23f9bd5dfd10b70501fdb7485c67ab1d3786c228ac12881a32b81f60a4c5a027" %}
+# mxnet is using a specific hash of this repo, so...
+{% set git_hash = "8a763892a973afc1acd3d4b469d05bb338a83a6e" %}
+
+package:
+  name: ps-lite
+  version: {{ version }}
+
+source:
+  url: https://github.com/dmlc/ps-lite/archive/{{ git_hash }}.tar.gz
+  sha256: {{ sha_hash }}
+  patches:
+    - 0001-disable-external.patch  # Don't let CMake/ps-lite get externals.
+
+build:
+  number: {{ build_number }}
+
+requirements:
+  build:
+    - patch                             # [not win]
+    - m2-patch                          # [win]
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - cmake
+    - ninja-base
+
+  host:
+    - zeromq
+    - protobuf
+
+test:
+  commands:
+    # Test includes:
+    - test -f ${PREFIX}/include/ps/internal/env.h                      # [unix]
+    - test -f ${PREFIX}/include/ps/ps.h                                # [unix]
+    - if not exist %PREFIX%\Library\include\ps\internal\env.h  exit 1  # [win]
+    - if not exist %PREFIX%\Library\include\ps\ps.h  exit 1            # [win]
+    # Test library:
+    - test -f ${PREFIX}/lib/libpslite.a                                # [unix]
+    - if not exist %PREFIX%\Library\lib\pslite.lib  exit 1             # [win]
+
+
+about:
+  home: https://github.com/dmlc/ps-lite
+  license: MIT
+  license_family: MIT
+  license_file: LICENSE
+  summary: A light and efficient implementation of the parameter server framework.
+  description: A light and efficient implementation of the parameter server framework. It provides clean yet powerful APIs.
+  dev_url: https://github.com/dmlc/ps-lite
