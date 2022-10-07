@@ -3,8 +3,8 @@ echo "Building %PKG_NAME%."
 
 
 :: Isolate the build.
-mkdir "Build-pslite"
-cd "Build-pslite"
+mkdir Build-%PKG_NAME%
+cd Build-%PKG_NAME%
 if errorlevel 1 exit /b 1
 
 
@@ -16,7 +16,7 @@ cmake .. %CMAKE_ARGS% ^
       -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
       -DCMAKE_BUILD_TYPE=Release ^
       ^
-      -DMLC_USE_CXX11=ON ^
+      -DMLC_USE_CXX11=ON
 
 
 :: Build.
