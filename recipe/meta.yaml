@@ -39,7 +39,7 @@ test:
     - if not exist %PREFIX%\Library\include\ps\ps.h  exit 1            # [win]
     # Test library:
     - test -f ${PREFIX}/lib/libpslite.a                                # [unix]
-    - if not exist %LIBRARY_LIB%\pslite.lib  exit 1                    # [win]
+    - if not exist %PREFIX%\Library\lib\pslite.lib  exit 1             # [win]
 
 
 about:
