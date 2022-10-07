@@ -16,7 +16,7 @@ cmake .. %CMAKE_ARGS% ^
       -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
       -DCMAKE_BUILD_TYPE=Release ^
       ^
-      -DMLC_USE_CXX11=ON ^
+      -DMLC_USE_CXX11=ON
 
 
 if errorlevel 1 exit /b 1
