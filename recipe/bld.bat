@@ -16,7 +16,10 @@ cmake .. %CMAKE_ARGS% ^
       -DCMAKE_INSTALL_PREFIX=%LIBRARY_PREFIX% ^
       -DCMAKE_BUILD_TYPE=Release ^
       ^
-      -DMLC_USE_CXX11=ON
+      -DMLC_USE_CXX11=ON^
+      ^
+      -DZMQ_INCLUDE_DIR="%LIBRARY_LIB%\include" ^
+      -DZMQ_LIBRARY="%LIBRARY_LIB%\libzmq.lib"
 
 
 if errorlevel 1 exit /b 1
