@@ -11,12 +11,16 @@ package:
 source:
   url: https://github.com/dmlc/ps-lite/archive/{{ git_hash }}.tar.gz
   sha256: {{ sha_hash }}
+  patches:
+    - 0001-disable-external.patch  # Don't let CMake/ps-lite get externals.
 
 build:
   number: {{ build_number }}
 
 requirements:
   build:
+    - patch                             # [not win]
+    - m2-patch                          # [win]
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - cmake

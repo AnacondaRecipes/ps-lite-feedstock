@@ -1,0 +1,33 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index ef566e5..2a4c5a4 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -8,7 +8,7 @@ endif()
+ 
+ list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/Modules)
+ 
+-include(ExternalProject) 
++find_package(ZMQ REQUIRED) #include(ExternalProject)  -- Use our ZMQ
+ set(pslite_LINKER_LIBS_L "" )
+ set(pslite_LINKER_LIBS_L_RELEASE "" )
+ set(pslite_LINKER_LIBS_L_DEBUG "" )
+@@ -36,7 +36,7 @@ FILE(GLOB SOURCE "src/*.cc")
+ if(MSVC)
+ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /EHsc")
+ FILE(GLOB getopt_SOURCE "src/windows/getopt.c")
+-list(APPEND SOURCE ${getopt_SOURCE}) 
++list(APPEND SOURCE ${getopt_SOURCE})
+ add_definitions(-DSTATIC_GETOPT)
+ include_directories(pslite "${PROJECT_SOURCE_DIR}/src/windows")
+ list(APPEND pslite_LINKER_LIBS_L "ipHlpApi.lib" "ws2_32.lib")
+@@ -49,8 +49,8 @@ list(APPEND pslite_LINKER_LIBS_L "ipHlpApi.lib" "ws2_32.lib")
+   endforeach(flag_var)
+ endif()
+ 
+-list(APPEND SOURCE ${proto_srcs}) 
+-add_library(pslite ${SOURCE}) 
++list(APPEND SOURCE ${proto_srcs})
++add_library(pslite ${SOURCE})
+ 
+ target_link_libraries(pslite ${pslite_LINKER_LIBS})
+ 
