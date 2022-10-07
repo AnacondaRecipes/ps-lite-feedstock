@@ -3,8 +3,8 @@ echo "Building %PKG_NAME%."
 
 
 :: Isolate the build.
-mkdir Build-%PKG_NAME%
-cd Build-%PKG_NAME%
+mkdir "Build-%PKG_NAME%"
+cd "Build-%PKG_NAME%"
 if errorlevel 1 exit /b 1
 
 
