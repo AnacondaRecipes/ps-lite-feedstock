@@ -45,7 +45,7 @@ echo "Installing..."
 :: Hand copy for now...
 copy pslite.lib %LIBRARY_LIB%\
 if errorlevel 1 exit /b 1
-xcopy /s /y /i %SRC_DIR%\include\ps %LIBRARY_INC%\
+xcopy /s /y /i %SRC_DIR%\include\ps %LIBRARY_INC%\ps
 if errorlevel 1 exit /b 1
 
 :: Error free exit.
